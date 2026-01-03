@@ -24,7 +24,7 @@ with st.spinner('Yapay Zeka Modeli Yükleniyor...'):
     model = load_model()
 
 # --- 2. ARAYÜZ TASARIMI ---
-st.title("🔬 Cilt Kanseri Risk Analizi")
+st.title("LUMORA")
 st.markdown("""
 Bu uygulama, yüklediğiniz cilt lezyonu fotoğraflarını yapay zeka ile analiz eder.
 **UYARI:** *Bu sonuçlar sadece bir tahmindir ve tıbbi teşhis yerine geçmez. Kesin sonuç için doktora başvurun.*
