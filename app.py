@@ -50,9 +50,21 @@ if image is not None:
     st.image(image, caption='Analiz Edilen Görüntü', use_column_width=True)
 
     # Resmi modelin anlayacağı formata getir (Preprocessing)
-    # 1. Boyutlandır (224x224)
-    size = (224, 224)
-    image = ImageOps.fit(image, size, Image.LANCZOS)
+# 1. Önce görüntünün tam ortasını kırpalım (Zoom etkisi)
+    # Görüntü genişliğinin %50'sini al, kenarları at.
+    width, height = image.size
+    new_width = width * 0.5 
+    new_height = height * 0.5
+    
+    left = (width - new_width)/2
+    top = (height - new_height)/2
+    right = (width + new_width)/2
+    bottom = (height + new_height)/2
+    
+    image = image.crop((left, top, right, bottom))
+
+    # 2. Sonra modele uygun boyuta getir
+    image = ImageOps.fit(image, (224, 224), Image.LANCZOS)
 
     # 2. Sayısal diziye çevir ve normalize et (0-1 arası)
     img_array = np.array(image) / 255.0
