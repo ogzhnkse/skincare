@@ -5,7 +5,7 @@ import numpy as np
 
 # --- AYARLAR ---
 # Model dosyasının adı (yan yana olduklarından emin olun)
-MODEL_PATH = 'cilt_kanseri_modeli.h5'
+MODEL_PATH = 'cilt_kanseri_modeli_v2.h5'
 
 # Sınıf etiketleri (Eğitimdeki alfabetik sıraya göre: 0=Benign, 1=Malignant)
 LABELS = {0: 'Zararsız (Benign)', 1: 'RİSKLİ (Malignant)'}
