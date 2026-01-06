@@ -24,10 +24,11 @@ with st.spinner('Yapay Zeka Modeli Yükleniyor...'):
     model = load_model()
 
 # --- 2. ARAYÜZ TASARIMI ---
-st.title("LUMORA")
+st.title("Dermora")
 st.markdown("""
 Bu uygulama, yüklediğiniz cilt lezyonu fotoğraflarını yapay zeka ile analiz eder.
-**UYARI:** *Bu sonuçlar sadece bir tahmindir ve tıbbi teşhis yerine geçmez. Kesin sonuç için doktora başvurun.*
+**UYARI:** *Fotoğrafların yakından, net ve görünür şekilde çekilmesi gerekmektedir. AI modelin hata yapabileceğini lütfen unutmayın.
+Bu sonuçlar sadece bir tahmindir ve tıbbi teşhis yerine geçmez. Kesin sonuç için doktora başvurun.*
 """)
 
 # Fotoğraf yükleme seçenekleri (Hem dosya seçme hem kamera)
