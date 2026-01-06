@@ -31,12 +31,8 @@ This application analyzes uploaded skin lesion photos using artificial intellige
 These results are only estimates and do not substitute for a medical diagnosis. Please consult a doctor for a definitive result.*
 """)
 
-
-
-
-
 # How would you like to upload the photo? (Hem dosya seçme hem kamera)
-option = st.radio("How would you like to upload the photo?", ("Upload File", "Use Camera"))
+option = st.radio("How would you like to upload the photo?", ("Upload_File", "Use_Camera"))
 
 image = None
 
