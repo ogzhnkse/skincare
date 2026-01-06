@@ -26,31 +26,35 @@ with st.spinner('Yapay Zeka Modeli Yükleniyor...'):
 # --- 2. ARAYÜZ TASARIMI ---
 st.title("Dermora")
 st.markdown("""
-Bu uygulama, yüklediğiniz cilt lezyonu fotoğraflarını yapay zeka ile analiz eder.
-**UYARI:** *Fotoğrafların yakından, net ve görünür şekilde çekilmesi gerekmektedir. AI modelin hata yapabileceğini lütfen unutmayın.
-Bu sonuçlar sadece bir tahmindir ve tıbbi teşhis yerine geçmez. Kesin sonuç için doktora başvurun.*
+This application analyzes uploaded skin lesion photos using artificial intelligence.
+**WARNING:** *Photos must be taken close-up, clear, and fully visible. Please note that the AI model may make errors. 
+These results are only estimates and do not substitute for a medical diagnosis. Please consult a doctor for a definitive result.*
 """)
 
-# Fotoğraf yükleme seçenekleri (Hem dosya seçme hem kamera)
-option = st.radio("Fotoğrafı nasıl yüklemek istersiniz?", ("Dosya Yükle", "Kamera Kullan"))
+This application analyzes uploaded skin lesion photos using artificial intelligence.
+
+
+
+# How would you like to upload the photo? (Hem dosya seçme hem kamera)
+option = st.radio("Fotoğrafı nasıl yüklemek istersiniz?", ("Upload File", "Use Camera"))
 
 image = None
 
-if option == "Dosya Yükle":
-    uploaded_file = st.file_uploader("Bir resim dosyası seçin", type=["jpg", "png", "jpeg"])
+if option == "Upload File:
+    uploaded_file = st.file_uploader("Select an image file", type=["jpg", "png", "jpeg"])
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
 else:
-    camera_file = st.camera_input("Fotoğraf Çek")
+    camera_file = st.camera_input("Use Camera")
     if camera_file is not None:
         image = Image.open(camera_file)
 
 # --- 3. TAHMİN İŞLEMİ ---
 if image is not None:
-    # Kullanıcıya resmi göster
-    st.image(image, caption='Analiz Edilen Görüntü', use_column_width=True)
+    # Show the image to the user
+    st.image(image, caption='Analyzed Image', use_column_width=True)
 
-    # Resmi modelin anlayacağı formata getir (Preprocessing)
+    # Format the image for the model (Preprocessing)
 # 1. Önce görüntünün tam ortasını kırpalım (Zoom etkisi)
     # Görüntü genişliğinin %50'sini al, kenarları at.
     width, height = image.size
@@ -83,13 +87,13 @@ if image is not None:
     benign_prob = prediction[0][0]
 
     st.write("---")
-    st.subheader("📊 Analiz Sonucu")
+    st.subheader("📊 Analysis Result")
 
     # Sonucu ekrana yazdır
     if malignant_prob > 0.5:
-        st.error(f"⚠️ SONUÇ: **{LABELS[1]}**")
-        st.write(f"Risk Oranı: **%{malignant_prob * 100:.2f}**")
-        st.info("Lütfen uzman bir dermatoloğa görünün.")
+        st.error(f"⚠️ RESULT: **{LABELS[1]}**")
+        st.write(f"Risk Rate: **%{malignant_prob * 100:.2f}**")
+        st.info("Please consult a specialist dermatologist.")
     else:
-        st.success(f"✅ SONUÇ: **{LABELS[0]}**")
-        st.write(f"Zararsız Olma İhtimali: **%{benign_prob * 100:.2f}**")
+        st.success(f"✅ RESULT: **{LABELS[0]}**")
+        st.write(f"Probability of Being Benign: **%{benign_prob * 100:.2f}**")
