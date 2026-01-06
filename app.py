@@ -36,11 +36,11 @@ This application analyzes uploaded skin lesion photos using artificial intellige
 
 
 # How would you like to upload the photo? (Hem dosya seçme hem kamera)
-option = st.radio("Fotoğrafı nasıl yüklemek istersiniz?", ("Upload File", "Use Camera"))
+option = st.radio("How would you like to upload the photo?", ("Upload File", "Use Camera"))
 
 image = None
 
-if option == "Upload File:
+if option == Upload File:
     uploaded_file = st.file_uploader("Select an image file", type=["jpg", "png", "jpeg"])
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
