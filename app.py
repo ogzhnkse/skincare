@@ -40,12 +40,12 @@ option = st.radio("How would you like to upload the photo?", ("Upload File", "Us
 
 image = None
 
-if option == Upload File:
+if option == Upload_File:
     uploaded_file = st.file_uploader("Select an image file", type=["jpg", "png", "jpeg"])
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
 else:
-    camera_file = st.camera_input("Use Camera")
+    camera_file = st.camera_input("Use_Camera")
     if camera_file is not None:
         image = Image.open(camera_file)
 
